@@ -15,9 +15,12 @@ describe('option', () => {
       value: 2,
     },
   ];
-
   const option = new Option({
     dataSource,
+  });
+
+  test('克隆数据源', () => {
+    expect(dataSource === option.options).toBe(false);
   });
 
   test('下拉选项', () => {
@@ -31,5 +34,17 @@ describe('option', () => {
     for (const key in option.labelMap) {
       expect(labelKeys.includes(Number(key))).toBe(true);
     }
+  });
+
+  test('更新数据源', () => {
+    dataSource.push({
+      label: '测试',
+      value: 3,
+    });
+    option.update({
+      dataSource,
+    });
+
+    expect(dataSource.length === option.options.length).toBe(true);
   });
 });

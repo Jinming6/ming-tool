@@ -46,18 +46,22 @@ export class Option {
    */
   init(options: Options): void {
     const { dataSource, fieldsName } = options;
-    if (isArray(dataSource)) {
-      this.dataSource = cloneDeep(dataSource);
-    }
-    if (isPlainObject(fieldsName)) {
-      this.fieldsName = fieldsName as FieldsName;
-    }
+    this.dataSource = isArray(dataSource) ? cloneDeep(dataSource) : [];
+    this.fieldsName = isPlainObject(fieldsName)
+      ? (fieldsName as FieldsName)
+      : DefaultFieldsName;
   }
 
   /**
    * 更新
    */
   update(options: Options): void {
-    this.init(options);
+    const { dataSource, fieldsName } = options;
+    if (isArray(dataSource)) {
+      this.dataSource = cloneDeep(dataSource);
+    }
+    if (isPlainObject(fieldsName)) {
+      this.fieldsName = fieldsName as FieldsName;
+    }
   }
 }

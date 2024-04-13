@@ -83,6 +83,31 @@
       uint8Array.set(encodedData);
       window['@jinming6/mingTool'].downloadArrayBuffer(buffer, 'example.txt')
     })
+
+    const dataSource = [
+      {
+        label: '关闭',
+        value: 0,
+      },
+      {
+        label: '开启',
+        value: 1,
+      },
+      {
+        label: '暂停',
+        value: 2,
+      },
+    ];
+    const option = new window['@jinming6/mingTool'].Option({dataSource});
+    console.log(option)
+    setTimeout(() => {
+      dataSource.push({
+        label: '继续',
+        value: 3,
+      })
+      option.update({dataSource})
+      console.log(option)
+    }, 1000)
   </script>
 </body>
 
