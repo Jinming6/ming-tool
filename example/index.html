@@ -11,7 +11,8 @@
       color: white;
     }
 
-    .rgbColor, .hexColor {
+    .rgbColor,
+    .hexColor {
       width: 100px;
       height: 100px;
       transition: .2s;
@@ -19,15 +20,18 @@
       border: 1px solid rgba(255, 255, 255, .5);
     }
 
-    .rgb, .hex {
+    .rgb,
+    .hex {
       height: 24px;
       font-size: 12px;
       line-height: 24px;
     }
-    
+
     .table {
       border-collapse: collapse;
-      th, td {
+
+      th,
+      td {
         border: 1px solid white;
       }
     }
@@ -57,14 +61,14 @@
   <script>
     const randomRgbBtn = document.getElementById('randomRgbBtn');
     randomRgbBtn.addEventListener('click', () => {
-      const color = mingTool.getRandomRgb();
+      const color = window['@jinming6/mingTool'].getRandomRgb();
       document.querySelector('.rgb').textContent = color;
       document.querySelector('.rgbColor').style.backgroundColor = color;
     });
-    
+
     const randomHexBtn = document.getElementById('randomHexBtn');
     randomHexBtn.addEventListener('click', () => {
-      const color = mingTool.getRandomHex();
+      const color = window['@jinming6/mingTool'].getRandomHex();
       document.querySelector('.hex').textContent = color;
       document.querySelector('.hexColor').style.backgroundColor = color;
     });
@@ -77,7 +81,7 @@
       const buffer = new ArrayBuffer(encodedData.byteLength);
       const uint8Array = new Uint8Array(buffer);
       uint8Array.set(encodedData);
-      mingTool.downloadArrayBuffer(buffer, 'example.txt')
+      window['@jinming6/mingTool'].downloadArrayBuffer(buffer, 'example.txt')
     })
   </script>
 </body>

@@ -1,5 +1,5 @@
 {
-  "name": "ming-tool",
+  "name": "@jinming6/ming-tool",
   "version": "0.0.1",
   "description": "",
   "main": "dist/ming-tool.js",
