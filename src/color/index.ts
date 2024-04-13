@@ -1,5 +1,5 @@
 /**
- * @desc 随机rgb
+ * 随机rgb
  */
 export const getRandomRgb = (): string => {
   const random = (): number => {
@@ -9,7 +9,7 @@ export const getRandomRgb = (): string => {
 };
 
 /**
- * @desc 随机hex
+ * 随机hex
  */
 export const getRandomHex = (): string => {
   const random = (): string => {

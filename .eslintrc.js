@@ -22,5 +22,6 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/no-dynamic-delete': 'off',
+    '@typescript-eslint/non-nullable-type-assertion-style': 'off',
   },
 };

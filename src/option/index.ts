@@ -1,35 +1,31 @@
-import { isPlainObject } from 'lodash-es';
+import { cloneDeep, isArray, isPlainObject } from 'lodash-es';
 import type { LabelMap, Options, DataSourceItem, FieldsName } from './type';
 
 export const DefaultFieldsName: FieldsName = { label: 'label', value: 'value' };
 
 export class Option {
   /**
-   * @description: 下拉选项
+   * 下拉选项
    */
-  dataSource: DataSourceItem[];
+  dataSource: DataSourceItem[] = [];
   /**
-   * @description: 字段名
+   * 字段名
    */
-  fieldsName: FieldsName;
+  fieldsName: FieldsName = DefaultFieldsName;
 
   constructor(options: Options) {
-    const { dataSource, fieldsName = DefaultFieldsName } = options;
-    this.dataSource = dataSource;
-    this.fieldsName = isPlainObject(fieldsName)
-      ? fieldsName
-      : DefaultFieldsName;
+    this.init(options);
   }
 
   /**
-   * @description: 获取下拉选项
+   * 获取下拉选项
    */
   get options(): DataSourceItem[] {
     return this.dataSource;
   }
 
   /**
-   * @description: 获取label映射
+   * 获取label映射
    */
   get labelMap(): LabelMap {
     const map: Record<DataSourceItem['value'], DataSourceItem['label']> = {};
@@ -43,5 +39,25 @@ export class Option {
       }
     });
     return map;
+  }
+
+  /**
+   * 初始化
+   */
+  init(options: Options): void {
+    const { dataSource, fieldsName } = options;
+    if (isArray(dataSource)) {
+      this.dataSource = cloneDeep(dataSource);
+    }
+    if (isPlainObject(fieldsName)) {
+      this.fieldsName = fieldsName as FieldsName;
+    }
+  }
+
+  /**
+   * 更新
+   */
+  update(options: Options): void {
+    this.init(options);
   }
 }

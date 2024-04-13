@@ -1,7 +1,7 @@
 export const DefaultReplaceStr = '--';
 
 /**
- * @desc 空值替换
+ * 空值替换
  */
 export function replaceEmpty(
   str: unknown,
