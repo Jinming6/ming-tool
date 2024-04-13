@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/ming-tool.js",
   "scripts": {
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "dev": "rollup --watch --config rollup.config.ts --configPlugin typescript",
     "prepare": "husky",
@@ -21,7 +21,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.11",
-    "@types/lodash": "^4.14.202",
+    "@types/lodash-es": "^4.17.12",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -33,6 +33,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "husky": "^9.0.11",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.0",
     "prettier": "3.1.1",
     "rollup": "^4.8.0",
@@ -42,7 +43,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "dotenv": "^16.4.1"
+    "dotenv": "^16.4.1",
+    "lodash-es": "^4.17.21"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

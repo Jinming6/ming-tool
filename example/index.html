@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      background-color: black;
+      color: white;
+    }
+
+    .rgbColor, .hexColor {
+      width: 100px;
+      height: 100px;
+      transition: .2s;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, .5);
+    }
+
+    .rgb, .hex {
+      height: 24px;
+      font-size: 12px;
+      line-height: 24px;
+    }
+    
+    .table {
+      border-collapse: collapse;
+      th, td {
+        border: 1px solid white;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Example</h1>
+  <section>
+    <h2>随机RGB</h2>
+    <div class="rgbColor"></div>
+    <div class="rgb"></div>
+    <button id="randomRgbBtn">Random</button>
+  </section>
+  <section>
+    <h2>随机HEX</h2>
+    <div class="hexColor"></div>
+    <div class="hex"></div>
+    <button id="randomHexBtn">Random</button>
+  </section>
+  <section>
+    <h2>下载文件</h2>
+    <button id="downloadFileBtn">Download</button>
+  </section>
+
+  <script src="../dist/ming-tool.js"></script>
+  <script>
+    const randomRgbBtn = document.getElementById('randomRgbBtn');
+    randomRgbBtn.addEventListener('click', () => {
+      const color = mingTool.getRandomRgb();
+      document.querySelector('.rgb').textContent = color;
+      document.querySelector('.rgbColor').style.backgroundColor = color;
+    });
+    
+    const randomHexBtn = document.getElementById('randomHexBtn');
+    randomHexBtn.addEventListener('click', () => {
+      const color = mingTool.getRandomHex();
+      document.querySelector('.hex').textContent = color;
+      document.querySelector('.hexColor').style.backgroundColor = color;
+    });
+
+    const downloadFileBtn = document.getElementById('downloadFileBtn');
+    downloadFileBtn.addEventListener('click', () => {
+      const str = '大道泛兮，其可左右。';
+      const encoder = new TextEncoder();
+      const encodedData = encoder.encode(str);
+      const buffer = new ArrayBuffer(encodedData.byteLength);
+      const uint8Array = new Uint8Array(buffer);
+      uint8Array.set(encodedData);
+      mingTool.downloadArrayBuffer(buffer, 'example.txt')
+    })
+  </script>
+</body>
+
+</html>
