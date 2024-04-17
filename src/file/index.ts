@@ -1,7 +1,9 @@
+import { isArrayBuffer, isString } from 'lodash-es';
 import { warn } from '../utils/warning';
+import { InputType, type DownloadFileOpts } from './type';
 
 /**
- * 下载文件流
+ * 下载文件(arrayBuffer)
  */
 export function downloadArrayBuffer(
   stream: ArrayBuffer,
@@ -13,6 +15,7 @@ export function downloadArrayBuffer(
     const a = document.createElement('a');
     a.href = url;
     a.download = filename;
+    a.target = '_blank';
     a.click();
     URL.revokeObjectURL(url);
     return true;
@@ -71,17 +74,41 @@ export function convert2Webp(file: File | Blob, quality = 0.8): Promise<Blob> {
 }
 
 /**
- * 下载文件(根据url)
+ * 下载文件(url)
  */
-export function downloadFile(url: string, filename: string): boolean {
+export function downloadUrl(url: string, filename: string): boolean {
   try {
     const a = document.createElement('a');
     a.href = url;
-    a.download = filename;
+    a.setAttribute('download', filename);
+    a.target = '_blank';
     a.click();
     return true;
   } catch (e: any) {
     warn(`下载文件失败 ${e.message}`);
     return false;
   }
+}
+
+/**
+ * 下载文件
+ */
+export function downloadFile(options: DownloadFileOpts): boolean {
+  const { inputType = InputType.URL, filename, url, arrayBuffer } = options;
+  if (!isString(filename)) {
+    warn('filename 不能为空');
+    return false;
+  }
+  if (inputType === InputType.ArrayBuffer) {
+    if (!isArrayBuffer(arrayBuffer)) {
+      warn('arrayBuffer 不能为空');
+      return false;
+    }
+    return downloadArrayBuffer(arrayBuffer, filename);
+  }
+  if (!isString(url)) {
+    warn('url 不能为空');
+    return false;
+  }
+  return downloadUrl(url, filename);
 }

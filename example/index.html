@@ -80,13 +80,26 @@
 
     const downloadFileBtn = document.getElementById('downloadFileBtn');
     downloadFileBtn.addEventListener('click', () => {
-      const str = '大道泛兮，其可左右。';
-      const encoder = new TextEncoder();
-      const encodedData = encoder.encode(str);
-      const buffer = new ArrayBuffer(encodedData.byteLength);
-      const uint8Array = new Uint8Array(buffer);
-      uint8Array.set(encodedData);
-      window['@jinming6/mingTool'].downloadArrayBuffer(buffer, 'example.txt')
+      // const str = '大道泛兮，其可左右。';
+      // const encoder = new TextEncoder();
+      // const encodedData = encoder.encode(str);
+      // const buffer = new ArrayBuffer(encodedData.byteLength);
+      // const uint8Array = new Uint8Array(buffer);
+      // uint8Array.set(encodedData);
+      // window['@jinming6/mingTool'].downloadFile({
+      //   inputType: 'arrayBuffer',
+      //   arrayBuffer: buffer,
+      //   filename: 'example.txt',
+      // })
+
+
+      const url = './demo.png';
+      const filename = 'test.png';
+      window['@jinming6/mingTool'].downloadFile({
+        inputType: 'url',
+        url,
+        filename,
+      })
     })
 
     const dataSource = [
