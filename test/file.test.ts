@@ -3,14 +3,12 @@
  */
 
 import { downloadArrayBuffer, downloadFile } from '../src/file';
+import { jest } from '@jest/globals';
 
 describe('file', () => {
-  if (typeof window.URL.createObjectURL === 'undefined') {
-    window.URL.createObjectURL = (() => {}) as any;
-  }
-  if (typeof window.URL.revokeObjectURL === 'undefined') {
-    window.URL.revokeObjectURL = (() => {}) as any;
-  }
+  window.URL.createObjectURL = jest.fn(() => 'Hello, world!');
+  window.URL.revokeObjectURL = jest.fn();
+  window.Image = jest.fn() as any;
 
   test('下载ArrayBuffer', () => {
     const arrayBuffer = new ArrayBuffer(8);

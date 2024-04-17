@@ -5,6 +5,7 @@
   "main": "dist/ming-tool.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "dev": "rollup --watch --config rollup.config.ts --configPlugin typescript",
     "prepare": "husky",
@@ -14,6 +15,7 @@
   "author": "Jinming6 <response965@163.com>",
   "license": "MIT",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",

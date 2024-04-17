@@ -59,6 +59,7 @@
   <section>
     <h2>转换为Webp</h2>
     <input type="file" id="fileInput" accept="image/*">
+    <button id="testBtn">Test</button>
   </section>
 
   <script src="../dist/ming-tool.js"></script>
@@ -102,14 +103,14 @@
         value: 2,
       },
     ];
-    const option = new window['@jinming6/mingTool'].Option({dataSource});
+    const option = new window['@jinming6/mingTool'].Option({ dataSource });
     console.log(option)
     setTimeout(() => {
       dataSource.push({
         label: '继续',
         value: 3,
       })
-      option.update({dataSource})
+      option.update({ dataSource })
       console.log(option)
     }, 1000)
 
@@ -120,6 +121,29 @@
       const url = URL.createObjectURL(blob);
       window['@jinming6/mingTool'].downloadFile(url, 'example.webp');
       URL.revokeObjectURL(url);
+    })
+
+    const testBtn = document.getElementById('testBtn');
+    testBtn.addEventListener('click', async () => {
+      try {
+        const img = new Image()
+        img.src = './demo.png'
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob(async (blob) => {
+            const webpBlob = await window['@jinming6/mingTool'].convert2Webp(blob);
+            const url = URL.createObjectURL(webpBlob);
+            window['@jinming6/mingTool'].downloadFile(url, 'example.webp');
+            URL.revokeObjectURL(url);
+          })
+        }
+      } catch (e) {
+        console.log(e)
+      }
     })
   </script>
 </body>
