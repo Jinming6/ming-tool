@@ -136,9 +136,7 @@
           ctx.drawImage(img, 0, 0);
           canvas.toBlob(async (blob) => {
             const webpBlob = await window['@jinming6/mingTool'].convert2Webp(blob);
-            const url = URL.createObjectURL(webpBlob);
-            window['@jinming6/mingTool'].downloadFile(url, 'example.webp');
-            URL.revokeObjectURL(url);
+            window['@jinming6/mingTool'].downloadArrayBuffer(webpBlob, 'example.webp')
           })
         }
       } catch (e) {
