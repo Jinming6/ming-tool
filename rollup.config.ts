@@ -30,6 +30,7 @@ export default {
       name,
       globals: {
         lodashEs: '_',
+        compareVersions: 'compareVersions',
       },
     },
     {
@@ -39,6 +40,7 @@ export default {
       plugins: [terser()],
       globals: {
         lodashEs: '_',
+        compareVersions: 'compareVersions',
       },
     },
   ],
@@ -52,5 +54,5 @@ export default {
       preventAssignment: true,
     }),
   ],
-  external: ['lodashEs', 'uuid'],
+  external: ['lodashEs', 'compareVersions'],
 };
