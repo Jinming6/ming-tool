@@ -3,7 +3,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.ts?$': [
+    '^.+\\.[tj]s?$': [
       'ts-jest',
       {
         useESM: true,
@@ -11,4 +11,7 @@ module.exports = {
     ],
   },
   extensionsToTreatAsEsm: ['.ts'],
+  moduleNameMapper: {
+    '^uuid$': '<rootDir>/node_modules/uuid/wrapper.mjs',
+  },
 };

@@ -24,6 +24,7 @@
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.11",
     "@types/lodash-es": "^4.17.12",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -45,8 +46,10 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "compare-versions": "^6.1.0",
     "dotenv": "^16.4.1",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "uuid": "^9.0.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

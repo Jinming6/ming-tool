@@ -52,5 +52,5 @@ export default {
       preventAssignment: true,
     }),
   ],
-  external: ['lodashEs'],
+  external: ['lodashEs', 'uuid'],
 };

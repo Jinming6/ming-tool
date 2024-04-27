@@ -35,10 +35,56 @@
         border: 1px solid white;
       }
     }
+
+    .demo {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      /* background-color: white; */
+      padding: 10px;
+      position: relative;
+    }
+
+    .demo::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      position: absolute;
+      top: -50%;
+      left: 0;
+      z-index: 9;
+    }
+
+    .demo::after {
+      content: '';
+      display: block;
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      border: 10px solid red;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      position: absolute;
+      inset: 0;
+      border-radius: 100%;
+      animation: rotate 0.5s linear forwards;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotateZ(-45deg);
+      }
+
+      100% {
+        transform: rotateZ(135deg);
+      }
+    }
   </style>
 </head>
 
 <body>
+  <div class="demo"></div>
   <h1>Example</h1>
   <section>
     <h2>随机RGB</h2>
@@ -132,7 +178,11 @@
       const file = e.target.files[0];
       const blob = await window['@jinming6/mingTool'].convert2Webp(file);
       const url = URL.createObjectURL(blob);
-      window['@jinming6/mingTool'].downloadFile(url, 'example.webp');
+      window['@jinming6/mingTool'].downloadFile({
+        inputType: 'url',
+        url,
+        filename: 'example.webp'
+      });
       URL.revokeObjectURL(url);
     })
 
@@ -157,6 +207,10 @@
         console.log(e)
       }
     })
+
+    window.onload = () => {
+      let compatibility = new window['@jinming6/mingTool'].Compatibility({ minBrowserVersion: { chrome: { minVersion: '124', } } })
+    }
   </script>
 </body>
 
