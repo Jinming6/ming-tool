@@ -4,7 +4,7 @@
 
 import { downloadArrayBuffer, downloadFile, downloadUrl } from '../src/file';
 import { jest } from '@jest/globals';
-import { InputType } from '../src/file/type';
+import { InputType } from '../src/models/file';
 
 describe('file', () => {
   window.URL.createObjectURL = jest.fn(() => 'Hello, world!');

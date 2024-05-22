@@ -1,7 +1,11 @@
 import { isBoolean, isPlainObject, cloneDeep, isString } from 'lodash-es';
 import { compare } from 'compare-versions';
 import { v4 as uuidv4 } from 'uuid';
-import type { BrowserMatch, BrowserOption, CompatibilityOptions } from './type';
+import type {
+  BrowserMatch,
+  BrowserOption,
+  CompatibilityOptions,
+} from '../models/browser';
 
 /**
  * 浏览器兼容性提示
@@ -34,6 +38,7 @@ export class Compatibility {
       platform: 'Safari',
     },
   ];
+
   // 浏览器匹配正则
   readonly regArr = [
     { label: 'ie', reg: [/rv:([\d.]+)\) like gecko/, /msie ([\d.]+)/] },
@@ -43,6 +48,7 @@ export class Compatibility {
     { label: 'chrome', reg: [/chrome\/([\d.]+)/] },
     { label: 'safari', reg: [/version\/([\d.]+).*safari/] },
   ];
+
   // 浏览器下载地址映射
   readonly downloadLinkMap: Record<
     keyof Compatibility['minBrowserVersion'],
@@ -54,6 +60,7 @@ export class Compatibility {
     opera: 'https://www.opera.com/zh-cn',
     safari: 'https://www.apple.com/cn/safari/',
   };
+
   // 匹配到的浏览器平台及版本号
   browserMatch: BrowserMatch;
   // 限制浏览器最低版本
@@ -83,7 +90,7 @@ export class Compatibility {
     const { version } = this.browserMatch;
     if (isBoolean(this.minBrowserVersionItem))
       return this.minBrowserVersionItem;
-    if (!this.minBrowserVersionItem) return false;
+    if (this.minBrowserVersionItem == null) return false;
     const result = compare(
       version,
       this.minBrowserVersionItem.minVersion,
@@ -183,7 +190,7 @@ export class Compatibility {
   destroy(): void {
     if (!isString(this.elemId)) return;
     const elem = document.getElementById(this.elemId);
-    if (elem) {
+    if (elem != null) {
       elem.remove();
       this.elemId = undefined;
     }

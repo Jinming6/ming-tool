@@ -1,6 +1,6 @@
 import { isArrayBuffer, isString } from 'lodash-es';
 import { warn } from '../utils/warning';
-import { InputType, type DownloadFileOpts } from './type';
+import { InputType, type DownloadFileOpts } from '../models/file';
 
 /**
  * 下载文件(arrayBuffer)

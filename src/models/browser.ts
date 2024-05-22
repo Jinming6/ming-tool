@@ -1,9 +1,9 @@
-export type BrowserOption = {
+export interface BrowserOption {
   // 最低版本
   minVersion: string;
   // 下载地址
   downloadLink?: string;
-};
+}
 
 // 兼容性配置参数
 export interface CompatibilityOptions {

@@ -1,5 +1,10 @@
 import { cloneDeep, isArray, isPlainObject } from 'lodash-es';
-import type { LabelMap, Options, DataSourceItem, FieldsName } from './type';
+import type {
+  LabelMap,
+  Options,
+  DataSourceItem,
+  FieldsName,
+} from '../models/option';
 
 export const DefaultFieldsName: FieldsName = { label: 'label', value: 'value' };
 
