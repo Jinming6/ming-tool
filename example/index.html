@@ -17,7 +17,9 @@
       height: 100px;
       transition: .2s;
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, .5);
+      border: 1px solid white;
+      text-align: center;
+      line-height: 100px;
     }
 
     .rgb,
@@ -88,13 +90,17 @@
   <h1>Example</h1>
   <section>
     <h2>随机RGB</h2>
-    <div class="rgbColor"></div>
+    <div class="rgbColor">
+      <span>你好</span>
+    </div>
     <div class="rgb"></div>
     <button id="randomRgbBtn">Random</button>
   </section>
   <section>
     <h2>随机HEX</h2>
-    <div class="hexColor"></div>
+    <div class="hexColor">
+      <span>你好</span>
+    </div>
     <div class="hex"></div>
     <button id="randomHexBtn">Random</button>
   </section>
@@ -112,16 +118,18 @@
   <script>
     const randomRgbBtn = document.getElementById('randomRgbBtn');
     randomRgbBtn.addEventListener('click', () => {
-      const color = window['@jinming6/mingTool'].getRandomRgb();
+      const color = window['@jinming6/mingTool'].getRandomColor({ type: 'rgb' });
       document.querySelector('.rgb').textContent = color;
-      document.querySelector('.rgbColor').style.backgroundColor = color;
+      document.querySelector('.rgbColor').style.color = color;
+      document.querySelector('.rgbColor').style.borderColor = color;
     });
 
     const randomHexBtn = document.getElementById('randomHexBtn');
     randomHexBtn.addEventListener('click', () => {
-      const color = window['@jinming6/mingTool'].getRandomHex();
+      const color = window['@jinming6/mingTool'].getRandomColor({ type: 'hex' });
       document.querySelector('.hex').textContent = color;
-      document.querySelector('.hexColor').style.backgroundColor = color;
+      document.querySelector('.hexColor').style.color = color;
+      document.querySelector('.hexColor').style.borderColor = color;
     });
 
     const downloadFileBtn = document.getElementById('downloadFileBtn');
