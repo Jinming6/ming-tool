@@ -26,7 +26,7 @@ export default {
   output: [
     {
       file: 'dist/ming-tool.js',
-      format: 'umd',
+      format: 'es',
       name,
       globals: {
         lodashEs: '_',
@@ -35,7 +35,7 @@ export default {
     },
     {
       file: 'dist/ming-tool.min.js',
-      format: 'umd',
+      format: 'es',
       name,
       plugins: [terser()],
       globals: {
