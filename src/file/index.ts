@@ -1,6 +1,10 @@
 import { isArrayBuffer, isString } from 'lodash-es';
 import { warn } from '../utils/warning';
-import { InputType, type DownloadFileOpts } from '../models/file';
+import {
+  InputType,
+  type DownloadFileOpts,
+  type DownloadFileV2Opts,
+} from '../models/file';
 
 /**
  * 下载文件(arrayBuffer)
@@ -95,6 +99,8 @@ export function downloadUrl(url: string, filename: string): boolean {
 
 /**
  * 下载文件
+ * @deprecated 从 1.2.3 版本开始
+ * 请使用 downloadFileV2 代替
  */
 export function downloadFile(options: DownloadFileOpts): boolean {
   const { inputType = InputType.URL, filename, url, arrayBuffer } = options;
@@ -114,4 +120,27 @@ export function downloadFile(options: DownloadFileOpts): boolean {
     return false;
   }
   return downloadUrl(url, filename);
+}
+
+/**
+ * 下载文件 v2
+ */
+export function downloadFileV2(options: DownloadFileV2Opts): boolean {
+  const { type = InputType.URL, filename, dataSource } = options;
+  if (!isString(filename)) {
+    warn('filename 不能为空');
+    return false;
+  }
+  if (type === InputType.ArrayBuffer) {
+    if (!isArrayBuffer(dataSource)) {
+      warn('dataSource 不能为空');
+      return false;
+    }
+    return downloadArrayBuffer(dataSource, filename);
+  }
+  if (!isString(dataSource)) {
+    warn('dataSource 不能为空');
+    return false;
+  }
+  return downloadUrl(dataSource, filename);
 }
