@@ -6,11 +6,11 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript && pnpm run size",
     "dev": "rollup --watch --config rollup.config.ts --configPlugin typescript",
     "prepare": "husky",
     "release": "semantic-release",
-    "size": "size-limit && gzip-size dist/index.js"
+    "size": "size-limit && gzip-size dist/ming-tool.min.js"
   },
   "keywords": [
     "frontend-tool",
@@ -101,7 +101,7 @@
   "size-limit": [
     {
       "limit": "2.99 KB",
-      "path": "dist/index.js"
+      "path": "dist/ming-tool.min.js"
     }
   ]
 }
