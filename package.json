@@ -1,7 +1,7 @@
 {
   "name": "@jinming6/ming-tool",
   "version": "1.2.2",
-  "description": "",
+  "description": "前端工具库",
   "main": "dist/ming-tool.min.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
@@ -12,7 +12,11 @@
     "release": "semantic-release",
     "size": "size-limit && gzip-size dist/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "frontend-tool",
+    "tool",
+    "web"
+  ],
   "author": "Jinming6 <response965@163.com>",
   "license": "MIT",
   "devDependencies": {

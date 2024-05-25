@@ -28,7 +28,7 @@ export default {
       dir: 'dist',
       format: 'es',
       name,
-      entryFileNames: 'mingTool.min.js',
+      entryFileNames: 'ming-tool.min.js',
       chunkFileNames: 'chunks/[name]-[hash].js',
       plugins: [terser()],
       globals: {
