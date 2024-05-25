@@ -115,7 +115,7 @@
   </section>
 
   <script type="module">
-    import * as mingTool from '../dist/mingTool.min.js'
+    import * as mingTool from '../dist/ming-tool.min.js'
 
     const randomRgbBtn = document.getElementById('randomRgbBtn');
     randomRgbBtn.addEventListener('click', () => {
@@ -220,6 +220,12 @@
     window.onload = () => {
       let compatibility = new mingTool.Compatibility({ minBrowserVersion: { chrome: { minVersion: '125', } } })
     }
+
+    console.log(mingTool.getFilenameFromDisposition('attachment; filename="example.txt"'))
+    console.log(mingTool.getFilenameFromDisposition('attachment; filename=example.txt'))
+    console.log(mingTool.getFilenameFromDisposition("attachment; filename*=UTF-8''%e4%b8%ad%e6%96%87.txt"))
+    console.log(mingTool.getFilenameFromDisposition("attachment"))
+    console.log(mingTool.getFilenameFromDisposition())
   </script>
 </body>
 
