@@ -37,7 +37,6 @@ export default {
       },
       manualChunks(id: string) {
         if (id.includes('node_modules')) {
-          // 将第三方库打包到一个单独的 chunk 中
           return 'vendor';
         }
       },
