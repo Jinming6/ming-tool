@@ -25,22 +25,21 @@ export default {
   input: 'src/main.ts',
   output: [
     {
-      file: 'dist/ming-tool.js',
+      dir: 'dist',
       format: 'es',
       name,
-      globals: {
-        lodashEs: '_',
-        compareVersions: 'compareVersions',
-      },
-    },
-    {
-      file: 'dist/ming-tool.min.js',
-      format: 'es',
-      name,
+      entryFileNames: 'mingTool.min.js',
+      chunkFileNames: 'chunks/[name]-[hash].js',
       plugins: [terser()],
       globals: {
         lodashEs: '_',
         compareVersions: 'compareVersions',
+      },
+      manualChunks(id: string) {
+        if (id.includes('node_modules')) {
+          // 将第三方库打包到一个单独的 chunk 中
+          return 'vendor';
+        }
       },
     },
   ],

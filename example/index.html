@@ -114,11 +114,12 @@
     <button id="testBtn">Test</button>
   </section>
 
-  <script src="../dist/ming-tool.js"></script>
-  <script>
+  <script type="module">
+    import * as mingTool from '../dist/mingTool.min.js'
+
     const randomRgbBtn = document.getElementById('randomRgbBtn');
     randomRgbBtn.addEventListener('click', () => {
-      const color = window['@jinming6/mingTool'].getRandomColor({ type: 'rgb' });
+      const color = mingTool.getRandomColor({ type: 'rgb' });
       document.querySelector('.rgb').textContent = color;
       document.querySelector('.rgbColor').style.color = color;
       document.querySelector('.rgbColor').style.borderColor = color;
@@ -126,7 +127,7 @@
 
     const randomHexBtn = document.getElementById('randomHexBtn');
     randomHexBtn.addEventListener('click', () => {
-      const color = window['@jinming6/mingTool'].getRandomColor({ type: 'hex' });
+      const color = mingTool.getRandomColor({ type: 'hex' });
       document.querySelector('.hex').textContent = color;
       document.querySelector('.hexColor').style.color = color;
       document.querySelector('.hexColor').style.borderColor = color;
@@ -134,26 +135,26 @@
 
     const downloadFileBtn = document.getElementById('downloadFileBtn');
     downloadFileBtn.addEventListener('click', () => {
-      // const str = '大道泛兮，其可左右。';
-      // const encoder = new TextEncoder();
-      // const encodedData = encoder.encode(str);
-      // const buffer = new ArrayBuffer(encodedData.byteLength);
-      // const uint8Array = new Uint8Array(buffer);
-      // uint8Array.set(encodedData);
-      // window['@jinming6/mingTool'].downloadFile({
-      //   inputType: 'arrayBuffer',
-      //   arrayBuffer: buffer,
-      //   filename: 'example.txt',
-      // })
-
-
-      const url = './demo.png';
-      const filename = 'test.png';
-      window['@jinming6/mingTool'].downloadFile({
-        inputType: 'url',
-        url,
-        filename,
+      const str = '大道泛兮，其可左右。';
+      const encoder = new TextEncoder();
+      const encodedData = encoder.encode(str);
+      const buffer = new ArrayBuffer(encodedData.byteLength);
+      const uint8Array = new Uint8Array(buffer);
+      uint8Array.set(encodedData);
+      mingTool.downloadFile({
+        inputType: 'arrayBuffer',
+        arrayBuffer: buffer,
+        filename: 'example.txt',
       })
+
+
+      // const url = 'https://picsum.photos/200/300';
+      // const filename = 'test.png';
+      // mingTool.downloadFile({
+      //   inputType: 'url',
+      //   url,
+      //   filename,
+      // })
     })
 
     const dataSource = [
@@ -170,7 +171,7 @@
         value: 2,
       },
     ];
-    const option = new window['@jinming6/mingTool'].Option({ dataSource });
+    const option = new mingTool.Option({ dataSource });
     console.log(option)
     setTimeout(() => {
       dataSource.push({
@@ -184,9 +185,9 @@
     const fileInput = document.getElementById('fileInput');
     fileInput.addEventListener('change', async (e) => {
       const file = e.target.files[0];
-      const blob = await window['@jinming6/mingTool'].convert2Webp(file);
+      const blob = await mingTool.convert2Webp(file);
       const url = URL.createObjectURL(blob);
-      window['@jinming6/mingTool'].downloadFile({
+      mingTool.downloadFile({
         inputType: 'url',
         url,
         filename: 'example.webp'
@@ -207,8 +208,8 @@
           canvas.height = img.height;
           ctx.drawImage(img, 0, 0);
           canvas.toBlob(async (blob) => {
-            const webpBlob = await window['@jinming6/mingTool'].convert2Webp(blob);
-            window['@jinming6/mingTool'].downloadArrayBuffer(webpBlob, 'example.webp')
+            const webpBlob = await mingTool.convert2Webp(blob);
+            mingTool.downloadArrayBuffer(webpBlob, 'example.webp')
           })
         }
       } catch (e) {
@@ -217,7 +218,7 @@
     })
 
     window.onload = () => {
-      let compatibility = new window['@jinming6/mingTool'].Compatibility({ minBrowserVersion: { chrome: { minVersion: '125', } } })
+      let compatibility = new mingTool.Compatibility({ minBrowserVersion: { chrome: { minVersion: '125', } } })
     }
   </script>
 </body>

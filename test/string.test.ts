@@ -1,4 +1,4 @@
-import { DefaultReplaceStr, replaceEmpty } from '../src/string';
+import { DefaultReplaceStr, replaceEmpty } from '../src/main';
 
 describe('string', () => {
   test('空值替换', () => {

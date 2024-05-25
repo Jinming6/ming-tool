@@ -1,4 +1,4 @@
-import { getRandomColor, getRandomHex, getRandomRgb } from '../src/color';
+import { getRandomColor, getRandomHex, getRandomRgb } from '../src/main';
 import { ColorType } from '../src/models/color';
 
 describe('color', () => {

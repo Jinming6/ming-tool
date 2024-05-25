@@ -82,7 +82,10 @@ export function downloadUrl(url: string, filename: string): boolean {
     a.href = url;
     a.setAttribute('download', filename);
     a.target = '_blank';
+    a.style.display = 'none';
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     return true;
   } catch (e: any) {
     warn(`下载文件失败 ${e.message}`);

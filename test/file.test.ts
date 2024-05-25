@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { downloadArrayBuffer, downloadFile, downloadUrl } from '../src/file';
+import { downloadArrayBuffer, downloadFile, downloadUrl } from '../src/main';
 import { jest } from '@jest/globals';
 import { InputType } from '../src/models/file';
 

@@ -1,4 +1,4 @@
-import { getFilenameFromUrl } from '../src/url';
+import { getFilenameFromUrl } from '../src/main';
 
 describe('url', () => {
   test('从url中获取文件名', () => {
