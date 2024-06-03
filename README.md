@@ -2,7 +2,7 @@
 
 🔧 Front-end tool library. [Documentation](https://jinming6.github.io/plugins/ming-tool.html)
 
-## Feature
+## Features
 
 - ✅ Drop-down option mapping
 - ✅ Null value replacement display
